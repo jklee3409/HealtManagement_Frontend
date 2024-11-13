@@ -64,10 +64,12 @@ const Login = () => {
 
       if (response.status === 200) {
         // 로그인 성공 시 localStorage에 세션 정보 저장
+        const user = response.data;
+        localStorage.setItem('userId', user.id);
         localStorage.setItem('isLoggedIn', true);
         localStorage.setItem('user', JSON.stringify(response.data));
         
-        navigate('/health-management');  // 개인 건강 관리 페이지로 이동
+        navigate('/input');  // 개인 건강 관리 페이지로 이동
       }
     } catch (error) {
       console.error('Login error:', error);
