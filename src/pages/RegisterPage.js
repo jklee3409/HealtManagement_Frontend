@@ -84,7 +84,7 @@ const Signup = () => {
     try {
       console.log(formData);
       await axios.post('http://localhost:8080/api/users/register', formData);
-      navigate('/home');
+      navigate('/');
     } catch (error) {
       console.error("Signup error:", error);
       alert("회원가입에 실패했습니다. 누락된 정보가 없는지 확인해주세요.");
