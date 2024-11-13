@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
-  const [password, setPAssword] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {

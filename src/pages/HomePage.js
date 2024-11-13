@@ -9,7 +9,7 @@ function HomePage() {
             <header className="header">
                 <div className="logo-container">
                     <img src="/logo.png" alt="Service Logo" className="logo" />
-                    <h1 className="service-name">Health Management Service</h1>
+                    <h1 className="service-name">AI 건강 관리 서비스</h1>
                 </div>
                 <div className="auth-buttons">
                     <Link to="/login" className="button">로그인</Link>
@@ -21,7 +21,7 @@ function HomePage() {
             <main className="main-content">
                 <section className="intro">
                     <h2>건강 관리, 이젠 간편하게</h2>
-                    <p>당신의 건강 목표를 설정하고 매일 기록해보세요. 맞춤형 운동 및 식단 계획으로 건강한 삶을 이어가세요.</p>
+                    <p>당신의 목표를 설정하고 매일 기록해보세요. 맞춤형 운동 및 식단 계획으로 건강한 삶을 이어가세요.</p>
                 </section>
                 <section className="features">
                     <div className="feature-box">
