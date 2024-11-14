@@ -8,48 +8,62 @@ const LoginContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #121212;
 `;
 
 const FormWrapper = styled.div`
   width: 400px;
   padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const Title = styled.h2`
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 30px;
 `;
 
 const Input = styled.input`
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
   font-size: 16px;
+  color: #e6e6ff;
+  background-color: #2e2e2e;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #a366ff;
+  }
 `;
 
 const Button = styled.button`
   width: 100%;
-  padding: 12px;
-  background-color: #5a67d8;
+  padding: 14px;
+  background-color: #a366ff;
   color: white;
-  border: none;
-  border-radius: 4px;
   font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+
   &:hover {
-    background-color: #4c51bf;
+    background-color: #944dff;
   }
 `;
 
-const Login = () => {
+const LoginPage = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -63,13 +77,12 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        // 로그인 성공 시 localStorage에 세션 정보 저장
         const user = response.data;
         localStorage.setItem('userId', user.id);
-        localStorage.setItem('isLoggedIn', true);
-        localStorage.setItem('user', JSON.stringify(response.data));
-        
-        navigate('/input');  // 개인 건강 관리 페이지로 이동
+        localStorage.setItem('user', JSON.stringify(user));
+        setIsLoggedIn(true);
+
+        navigate('/');  // 홈페이지로 이동
       }
     } catch (error) {
       console.error('Login error:', error);
@@ -80,12 +93,12 @@ const Login = () => {
   return (
     <LoginContainer>
       <FormWrapper>
-        <Title>로그인</Title>
+        <Title>Singin</Title>
         <form onSubmit={handleLogin}>
           <Input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="이메일"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -93,16 +106,16 @@ const Login = () => {
           <Input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button type="submit">Login</Button>
+          <Button type="submit">로그인</Button>
         </form>
       </FormWrapper>
     </LoginContainer>
   );
 };
 
-export default Login;
+export default LoginPage;
