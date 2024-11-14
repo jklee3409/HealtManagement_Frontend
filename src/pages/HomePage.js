@@ -1,64 +1,214 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './HomePage.css';
+import styled, { keyframes } from 'styled-components';
+import { useInView } from 'react-intersection-observer';
+import Image1 from '../assets/images/function1.png'; 
+import Image2 from '../assets/images/function2.png'; 
 
-function HomePage() {
-    const navigate = useNavigate();
-    const isLoggedIn = localStorage.getItem('isLoggedIn'); // 로그인 상태 확인
+const Container = styled.div`
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #e6e6ff;
+`;
 
-    const handleLogout = () => {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('user');
-        navigate('/');
-        window.location.reload(); // 상태를 새로고침하여 반영
-    };
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+`;
 
-    return (
-        <div className="homepage">
-            {/* Header */}
-            <header className="header">
-                <div className="logo-container">
-                    <img src="/logo.png" alt="Service Logo" className="logo" />
-                    <h1 className="service-name">AI 헬스 케어 서비스</h1>
-                </div>
-                <div className="auth-buttons">
-                    {isLoggedIn ? (
-                        <>
-                            <button className="button" onClick={() => navigate('/health-management')}>나의 건강 상태</button>
-                            <button className="button" onClick={handleLogout}>로그아웃</button>
-                        </>
-                    ) : (
-                        <>
-                            <Link to="/login" className="button">로그인</Link>
-                            <Link to="/signup" className="button">회원 가입</Link>
-                        </>
-                    )}
-                </div>
-            </header>
+const Logo = styled.h1`
+  font-size: 24px;
+  color: #a366ff;
+`
 
-            {/* Main Content */}
-            <main className="main-content">
-                <section className="intro">
-                    <h2>건강 관리, 이젠 간편하게</h2>
-                    <p>당신의 목표를 설정하고 매일 기록해보세요. 맞춤형 운동 및 식단 계획으로 건강한 삶을 이어가세요.</p>
-                </section>
-                <section className="features">
-                    <div className="feature-box">
-                        <h3>개인 맞춤형 식단</h3>
-                        <p>개인 목표에 맞는 식단을 추천해드립니다.</p>
-                    </div>
-                    <div className="feature-box">
-                        <h3>운동 기록 및 분석</h3>
-                        <p>운동 기록을 바탕으로 맞춤형 피드백을 받아보세요.</p>
-                    </div>
-                    <div className="feature-box">
-                        <h3>목표 달성 추적</h3>
-                        <p>매일의 작은 성과가 쌓여 목표를 달성할 수 있도록 돕습니다.</p>
-                    </div>
-                </section>
-            </main>
-        </div>
-    );
-}
+const NavMenu = styled.nav`
+  display: flex;
+  gap: 20px;
+`;
+
+const NavLink = styled(Link)`
+  color: #e6e6ff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  &:hover {
+    color: #a366ff;
+    background-color: #2e2e2e;
+  }
+`;
+
+const MainBanner = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  color: #fff;
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 40px;
+`;
+
+const MainTitle = styled.h2`
+  font-size: 48px;
+  margin-bottom: 20px;
+`;
+
+const SubTitle = styled.p`
+  font-size: 18px;
+  margin-bottom: 40px;
+`;
+
+const CTAButton = styled.button`
+  padding: 12px 24px;
+  background-color: #a366ff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #944dff;
+  }
+`;
+
+// 애니메이션 추가
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const FeaturesSection = styled.section`
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+
+const FeatureContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 40px;
+  margin-bottom: 40px;
+  width: 80%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  opacity: ${({ inView }) => (inView ? 1 : 0)};
+  animation: ${({ inView }) => (inView ? fadeIn : 'none')} 0.7s ease-out;
+  transition: opacity 0.7s ease-out;
+
+  &:nth-child(odd) {
+    flex-direction: row;
+  }
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+`;
+
+const FeatureImage = styled.img`
+  width: 50%;
+  border-radius: 8px;
+  margin: 0 20px;
+`;
+
+const FeatureText = styled.div`
+  width: 50%;
+  color: #e6e6ff;
+  text-align: left;
+`;
+
+const FeatureTitle = styled.h3`
+  font-size: 24px;
+  color: #a366ff;
+  margin-bottom: 20px;
+`;
+
+const FeatureDescription = styled.p`
+  font-size: 16px;
+`;
+
+const HomePage = ({ isLoggedIn, onLogout }) => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    if (isLoggedIn) {
+      navigate('/dashboard');
+    } else {
+      navigate('/signup');
+    }
+  };
+
+  return (
+    <Container>
+      <Header>
+        <Logo>FitWell</Logo>
+        <NavMenu>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/insight">Insight</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/update">Update</NavLink>
+          {isLoggedIn ? (
+            <NavLink to="/" onClick={onLogout}>Logout</NavLink>
+          ) : (
+            <NavLink to="/login">Login</NavLink>
+          )}
+        </NavMenu>
+      </Header>
+
+      <MainBanner>
+        <MainTitle>FitWell</MainTitle>
+        <SubTitle>개인 맞춤형 건강 관리와 분석을 하나의 플랫폼에서 제공합니다.</SubTitle>
+        <CTAButton onClick={handleButtonClick}>
+          {isLoggedIn ? 'Dashboard' : 'Get Started'}
+        </CTAButton>
+      </MainBanner>
+
+      <FeaturesSection>
+        <FeatureBlock 
+          title="식단 관리" 
+          description="일일 식단을 기록하고, 목표 달성을 위한 맞춤형 가이드를 받아보세요." 
+          image={Image1} 
+        />
+        <FeatureBlock 
+          title="운동 모니터링" 
+          description="다양한 운동 유형과 기간을 추적하여 신체 활동을 효율적으로 관리하세요." 
+          image={Image2} 
+        />
+      </FeaturesSection>
+    </Container>
+  );
+};
+
+// 별도의 FeatureBlock 컴포넌트로 분리
+const FeatureBlock = ({ title, description, image }) => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
+  return (
+    <FeatureContainer ref={ref} inView={inView}>
+      <FeatureText>
+        <FeatureTitle>{title}</FeatureTitle>
+        <FeatureDescription>{description}</FeatureDescription>
+      </FeatureText>
+      <FeatureImage src={image} alt={title} />
+    </FeatureContainer>
+  );
+};
 
 export default HomePage;
