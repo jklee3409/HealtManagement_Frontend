@@ -1,0 +1,33 @@
+/* HeaderStyles.css */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.header-logo {
+  font-size: 24px;
+  color: #a366ff;
+}
+
+.header-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.header-link {
+  color: #e6e6ff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.header-link:hover {
+  color: #a366ff;
+  background-color: #2e2e2e;
+}
