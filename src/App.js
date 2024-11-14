@@ -5,7 +5,6 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import FeedbackPage from './pages/FeedbackPage';
 import InputPage from './pages/InputPage';
-import ReportPage from './pages/ReportPage';
 import DashboardPage from './pages/DashboardPage';
 import UpdateMetricsPage from './pages/UpdateMetricsPage';
 
@@ -33,7 +32,6 @@ function App() {
                 <Route path="/signup" element={<RegisterPage />} />
                 <Route path="/feedback" element={<FeedbackPage />} />
                 <Route path="/input" element={<InputPage />} />
-                <Route path="/report" element={<ReportPage />} />
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/update" element={<UpdateMetricsPage />} />
             </Routes>
