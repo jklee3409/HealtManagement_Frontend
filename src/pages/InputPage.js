@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
 
 const Container = styled.div`
   max-width: 600px;
@@ -57,6 +58,8 @@ const FeedbackResult = styled.div`
   color: #333;
   font-size: 16px;
   line-height: 1.6;
+  white-space: pre-wrap; /* 줄바꿈과 공백을 유지하여 출력 */
+
 `;
 
 const InputPage = () => {
@@ -92,20 +95,29 @@ const InputPage = () => {
     }
   };
 
+  
   const handleFeedback = async () => {
     setLoading(true);
     setFeedback('');
     try {
-      // userId를 사용해 피드백 요청
-      const response = await axios.get(`http://localhost:8080/api/feedback?userId=${userId}`);
-      setFeedback(response.data); // 피드백 결과를 화면에 표시
+        // userId를 사용해 피드백 요청
+        const response = await axios.get(`http://localhost:8080/api/feedback?userId=${userId}`);
+
+        console.log(response.data); // API 응답 전체 출력
+
+        // 모든 choices 요소의 텍스트를 합쳐서 피드백 설정
+        const feedbackText = response.data.choices
+            .map(choice => choice.text || choice.message?.content)
+            .join('\n'); // 줄바꿈으로 여러 텍스트 조각 연결
+
+        setFeedback(feedbackText || '피드백이 없습니다.');
     } catch (error) {
-      console.error('Error fetching feedback:', error);
-      setFeedback('피드백 요청 중 오류가 발생했습니다. 다시 시도해주세요.');
+        console.error('Error fetching feedback:', error);
+        setFeedback('피드백 요청 중 오류가 발생했습니다. 다시 시도해주세요.');
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   return (
     <Container>
@@ -157,7 +169,7 @@ const InputPage = () => {
       {feedback && (
         <FeedbackResult>
           <h3>피드백 결과:</h3>
-          <p>{feedback}</p>
+          <ReactMarkdown>{feedback}</ReactMarkdown>
         </FeedbackResult>
       )}
     </Container>
