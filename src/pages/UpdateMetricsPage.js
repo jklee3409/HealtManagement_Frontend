@@ -118,7 +118,7 @@ const FeedbackResult = styled.div`
   white-space: pre-wrap;
 `;
 
-const UpdateMetricsPage = ({ userId, isLoggedIn, onLogout }) => {
+const UpdateMetricsPage = ({ isLoggedIn, onLogout }) => {
   const [weight, setWeight] = useState('');
   const [skeletalMuscleMass, setSkeletalMuscleMass] = useState('');
   const [diet, setDiet] = useState({ foodName: '', calories: '' });
@@ -126,6 +126,7 @@ const UpdateMetricsPage = ({ userId, isLoggedIn, onLogout }) => {
   const [feedback, setFeedback] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const userId = localStorage.getItem('userId');
 
   const handleUpdateMetrics = async (e) => {
     e.preventDefault();
@@ -151,9 +152,11 @@ const UpdateMetricsPage = ({ userId, isLoggedIn, onLogout }) => {
 
   const saveDietAndExercise = async () => {
     try {
+      console.log(userId);
       await axios.post(`http://localhost:8080/api/diet?userId=${userId}`, { ...diet });
       await axios.post(`http://localhost:8080/api/exercise?userId=${userId}`, { ...exercise });
       alert('식단 및 운동 정보가 저장되었습니다.');
+      navigate('/update');
     } catch (error) {
       console.error('Error saving diet and exercise:', error);
       alert('식단 및 운동 정보를 저장하는 중 오류가 발생했습니다.');
