@@ -1,6 +1,4 @@
-// LoginPage.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -108,10 +106,36 @@ const Button = styled.button`
   }
 `;
 
+const KakaoButton = styled(Button)`
+  background-color: #fee500;
+  color: #3c1e1e;
+
+  &:hover {
+    background-color: #ffe600;
+  }
+`;
+
 const LoginPage = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Kakao SDK 초기화
+    if (typeof window.Kakao === 'undefined') {
+      console.error('Kakao SDK가 로드되지 않았습니다.');
+      return;
+    }
+
+    if (!window.Kakao.isInitialized()) {
+      try {
+        window.Kakao.init('a2ccbbc329cc51c5b73e9a6bc7b72ccf'); 
+        console.log('Kakao SDK 초기화 완료');
+      } catch (error) {
+        console.error('Kakao SDK 초기화 실패:', error);
+      }
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -133,6 +157,17 @@ const LoginPage = ({ setIsLoggedIn }) => {
       console.error('Login error:', error);
       alert('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.');
     }
+  };
+
+  const handleKakaoLogin = () => {
+    if (!window.Kakao || !window.Kakao.Auth) {
+      alert('Kakao SDK가 로드되지 않았습니다.');
+      return;
+    }
+
+    window.Kakao.Auth.authorize({
+      redirectUri: 'http://localhost:3000/oauth/kakao/callback', // Redirect URI 설정
+    });
   };
 
   return (
@@ -169,6 +204,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
             />
             <Button type="submit">로그인</Button>
           </form>
+          <KakaoButton onClick={handleKakaoLogin}>카카오 로그인 & 회원가입</KakaoButton>
         </FormWrapper>
       </LoginContainer>
     </Container>
