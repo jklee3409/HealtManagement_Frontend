@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const LoadingScreen = styled.div`
   display: flex;
@@ -26,21 +27,17 @@ const LoadingText = styled.p`
   }
 `;
 
-const OAuthCallback = () => {
-  const [tokenFetched, setTokenFetched] = useState(false);
+const OAuthCallback = ({ setIsLoggedIn }) => {
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAccessToken = async () => {
-      // Prevent multiple fetches
-      if (tokenFetched) return;
-
       const params = new URLSearchParams(window.location.search);
       const code = params.get('code');
 
-      // Validate code exists
       if (!code) {
         alert('인증 코드가 존재하지 않습니다.');
-        window.location.href = '/login';
+        navigate('/login'); // 로그인 페이지로 이동
         return;
       }
 
@@ -50,43 +47,35 @@ const OAuthCallback = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ code })
+          body: JSON.stringify({ code }),
         });
 
-        // Mark token as fetched to prevent duplicate calls
-        setTokenFetched(true);
-
-        if (response.status === 201) {
-          // New user - redirect to signup
+        if (response.status === 200) {
+          const user = await response.json();
+          localStorage.setItem('userId', user.id); // 사용자 ID 저장
+          localStorage.setItem('user', JSON.stringify(user)); // 사용자 정보 저장
+          setIsLoggedIn(true); // 로그인 상태 업데이트
+          navigate('/'); // 홈페이지로 이동
+        } else if (response.status === 201) {
           const userData = await response.json();
-          window.location.href = `/signup?user=${encodeURIComponent(JSON.stringify(userData))}`;
-        } else if (response.ok) {
-          // Existing user - store user data and redirect to home
-          const userData = await response.json();
-          localStorage.setItem('user', JSON.stringify(userData));
-          window.location.href = '/';
+          navigate(`/signup?user=${encodeURIComponent(JSON.stringify(userData))}`); // 회원가입 페이지로 이동
         } else {
-          throw new Error('Login failed');
+          throw new Error('로그인 실패');
         }
       } catch (error) {
         console.error('OAuth 처리 중 오류:', error);
-        
-        // More specific error handling
-        alert('존재하지 않는 계정입니다. 회원가입을 진행해주세요.');
-        window.location.href = '/login';
+        navigate('/login'); // 로그인 페이지로 이동
       }
     };
 
     fetchAccessToken();
-  }, [tokenFetched]);
+  }, [navigate, setIsLoggedIn]);
 
-  const Loading = () => {
-    return (
-      <LoadingScreen>
-        <LoadingText>로그인 처리 중입니다. 잠시만 기다려주세요...</LoadingText>
-      </LoadingScreen>
-    );
-  };
+  return (
+    <LoadingScreen>
+      <LoadingText>로그인 처리 중입니다. 잠시만 기다려주세요...</LoadingText>
+    </LoadingScreen>
+  );
 };
 
 export default OAuthCallback;
