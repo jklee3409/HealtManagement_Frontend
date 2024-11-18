@@ -4,6 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import { useInView } from 'react-intersection-observer';
 import Image1 from '../assets/images/function1.png'; 
 import Image2 from '../assets/images/function2.png'; 
+import Image3 from '../assets/images/function3.png';
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -161,7 +162,7 @@ const HomePage = ({ isLoggedIn, onLogout }) => {
         <Logo>FitWell</Logo>
         <NavMenu>
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/insight">Insight</NavLink>
+          <NavLink to="/feedback">Insight</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
           <NavLink to="/update">Update</NavLink>
           {isLoggedIn ? (
@@ -182,14 +183,19 @@ const HomePage = ({ isLoggedIn, onLogout }) => {
 
       <FeaturesSection>
         <FeatureBlock 
-          title="식단 관리" 
-          description="일일 식단을 기록하고, 목표 달성을 위한 맞춤형 가이드를 받아보세요." 
+          title="주간 & 월간 리포트" 
+          description="칼로리 섭취량과 소모량을 분석하여 정리한 리포트를 받아보세요." 
           image={Image1} 
         />
         <FeatureBlock 
-          title="운동 모니터링" 
-          description="다양한 운동 유형과 기간을 추적하여 신체 활동을 효율적으로 관리하세요." 
+          title="식단 & 운동 모니터링" 
+          description="일일 식단과 운동을 추적하여 신체 활동을 효율적으로 관리하세요." 
           image={Image2} 
+        />
+        <FeatureBlock
+          title="AI 피드백 생성 및 추적" 
+          description="chaGPT API를 활용한 피드백을 생성하고 피드백 내용을 한 곳에서 확인할 수 있습니다." 
+          image={Image3}
         />
       </FeaturesSection>
     </Container>
