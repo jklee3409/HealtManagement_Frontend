@@ -1,20 +1,57 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const SignupContainer = styled.div`
+const Background = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #e6e6ff;
+`;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 94%;
+  max-width: 1400px;
+  padding: 20px 40px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  margin-bottom: 20px;
+`;
+
+const Logo = styled.h1`
+  font-size: 24px;
+  color: #a366ff;
+`;
+
+const NavMenu = styled.nav`
+  display: flex;
+  gap: 20px;
+`;
+
+const NavLink = styled(Link)`
+  color: #e6e6ff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  &:hover {
+    color: #a366ff;
+    background-color: #2e2e2e;
+  }
 `;
 
 const FormWrapper = styled.div`
   width: 400px;
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,39 +59,54 @@ const FormWrapper = styled.div`
 
 const Title = styled.h2`
   font-size: 24px;
-  color: #333;
+  color: white;
   margin-bottom: 20px;
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 93.5%;
   padding: 12px;
   margin: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid #6a42c2;
   border-radius: 4px;
+  background-color: #2e2e2e;
+  color: #e6e6ff;
   font-size: 16px;
+  &:focus {
+    outline: none;
+    border-color: #944dff;
+  }
 `;
 
 const Select = styled.select`
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid #6a42c2;
   border-radius: 4px;
+  background-color: #2e2e2e;
+  color: #e6e6ff;
   font-size: 16px;
+  &:focus {
+    outline: none;
+    border-color: #944dff;
+  }
 `;
 
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #5a67d8;
+  background-color: #a366ff;
   color: white;
   border: none;
   border-radius: 4px;
   font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
   &:hover {
-    background-color: #4c51bf;
+    background-color: #944dff;
   }
 `;
 
@@ -92,7 +144,17 @@ const Signup = () => {
   };
 
   return (
-    <SignupContainer>
+    <Background>
+      <Header>
+        <Logo>FitWell</Logo>
+        <NavMenu>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/insight">Insights</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/login">Login</NavLink>
+        </NavMenu>
+      </Header>
+
       <FormWrapper>
         <Title>회원 가입</Title>
         <form onSubmit={handleSubmit}>
@@ -153,7 +215,7 @@ const Signup = () => {
           <Button type="submit">Create Account</Button>
         </form>
       </FormWrapper>
-    </SignupContainer>
+    </Background>
   );
 };
 
