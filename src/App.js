@@ -7,6 +7,7 @@ import FeedbackPage from './pages/FeedbackPage';
 import InputPage from './pages/InputPage';
 import DashboardPage from './pages/DashboardPage';
 import UpdateMetricsPage from './pages/UpdateMetricsPage';
+import OAuthCallback from './pages/OAuthCallback';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />
                 <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+                <Route path="/oauth/kakao/callback" element={<OAuthCallback />} />
                 <Route path="/signup" element={<RegisterPage />} />
                 <Route path="/feedback" element={<FeedbackPage isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />
                 <Route path="/input" element={<InputPage />} />
