@@ -30,10 +30,10 @@ function App() {
                 <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />
                 <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
                 <Route path="/signup" element={<RegisterPage />} />
-                <Route path="/feedback" element={<FeedbackPage />} />
+                <Route path="/feedback" element={<FeedbackPage isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />
                 <Route path="/input" element={<InputPage />} />
-                <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/update" element={<UpdateMetricsPage />} />
+                <Route path="/dashboard" element={<DashboardPage isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />
+                <Route path="/update" element={<UpdateMetricsPage isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />
             </Routes>
         </Router>
     );
