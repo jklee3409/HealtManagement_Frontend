@@ -152,7 +152,7 @@ const HomePage = ({ isLoggedIn, onLogout }) => {
     if (isLoggedIn) {
       navigate('/dashboard');
     } else {
-      navigate('/signup');
+      navigate('/login');
     }
   };
 
