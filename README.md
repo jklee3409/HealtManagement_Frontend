@@ -1,9 +1,5 @@
-
----
-
 ### **Frontend README.md**
 
-```markdown
 # FitWell Frontend
 
 ## 프로젝트 소개 📋
