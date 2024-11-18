@@ -141,7 +141,7 @@ const DashboardPage = ({ isLoggedIn, onLogout }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('userId');
-    navigate('/login');
+    navigate('/');
   };
 
   useEffect(() => {
@@ -204,7 +204,7 @@ const DashboardPage = ({ isLoggedIn, onLogout }) => {
         <Logo>FitWell</Logo>
         <NavMenu>
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/insight">Insight</NavLink>
+          <NavLink to="/feedback">Insight</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
           <NavLink to="/update">Update</NavLink>
           {isLoggedIn ? (
