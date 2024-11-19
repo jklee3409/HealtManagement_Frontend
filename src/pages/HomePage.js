@@ -147,6 +147,8 @@ const FeatureDescription = styled.p`
 
 const HomePage = ({ isLoggedIn, onLogout }) => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user'));
+  const username = user ? user.username : null;
 
   const handleButtonClick = () => {
     if (isLoggedIn) {
@@ -174,8 +176,12 @@ const HomePage = ({ isLoggedIn, onLogout }) => {
       </Header>
 
       <MainBanner>
+
         <MainTitle>FitWell</MainTitle>
         <SubTitle>개인 맞춤형 건강 관리와 분석을 하나의 플랫폼에서 제공합니다.</SubTitle>
+        <SubTitle>
+          {isLoggedIn ? `${username}님, 환영합니다.` : '지금 함께 시작해보세요.'}
+          </SubTitle>
         <CTAButton onClick={handleButtonClick}>
           {isLoggedIn ? 'Dashboard' : 'Get Started'}
         </CTAButton>
@@ -187,14 +193,19 @@ const HomePage = ({ isLoggedIn, onLogout }) => {
           description="칼로리 섭취량과 소모량을 분석하여 정리한 리포트를 받아보세요." 
           image={Image1} 
         />
-        <FeatureBlock 
-          title="식단 & 운동 모니터링" 
-          description="일일 식단과 운동을 추적하여 신체 활동을 효율적으로 관리하세요." 
-          image={Image2} 
+        <FeatureBlock
+          title="식단 & 운동 모니터링"
+          description={
+            <>
+              일일 식단과 운동을 기록하고 효율적으로 관리하세요.<br />
+              MET 계산을 통해 칼로리 소모량을 확인할 수 있습니다.
+            </>
+          }
+          image={Image2}
         />
         <FeatureBlock
           title="AI 피드백 생성 및 추적" 
-          description="chaGPT API를 활용한 피드백을 생성하고 피드백 내용을 한 곳에서 확인할 수 있습니다." 
+          description="chaGPT API를 활용한 피드백을 맞춤형 피드백을 받아보세요." 
           image={Image3}
         />
       </FeaturesSection>
