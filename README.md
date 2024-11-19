@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+### **Frontend README.md**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FitWell Frontend
 
-## Available Scripts
+## 프로젝트 소개 📋
+FitWell의 프론트엔드 애플리케이션은 React를 기반으로 한 개인화된 건강 관리 웹 서비스입니다.  
+로그인, 회원가입, 식단 및 운동 기록, 피드백 분석 등 다양한 UI 기능을 제공합니다.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 기술 스택 🔧
+- **언어**: JavaScript (ES6+)
+- **프레임워크**: React
+- **상태 관리**: Redux
+- **스타일링**: TailwindCSS
+- **빌드 도구**: Vite
+- **API 통신**: Axios
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 주요 화면 🖥️
+### 1. **로그인 및 회원가입**
+- **카카오 로그인**을 활용한 간편 로그인.  
+- 회원가입 시 기본적인 신체 정보와 건강 목표 설정 가능.
 
-### `npm test`
+### 2. **홈페이지**
+- 서비스 소개 및 주요 기능 간략 안내. 페이드인 애니메이션을 통한 부드러운 UI 구현  
+- 로그인 상태에 따라 '로그아웃', '대시보드' 버튼 활성화.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. **대시보드**
+- **식단 및 운동 기록** 입력: 간단한 UI로 데이터 기록 가능.  
+- **주간 및 월간 리포트** 시각화: 차트로 건강 상태 확인.
 
-### `npm run build`
+### 4. **피드백 분석**
+- ChatGPT API를 통한 개인화된 피드백 제공.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 프로젝트 구조 📂
+```plaintext
+src
+├── components         # 재사용 가능한 컴포넌트
+├── pages              # 주요 페이지 (Signup, Dashboard 등)
+├── redux              # Redux 상태 관리
+├── services           # API 호출 관련 코드
+└── styles             # TailwindCSS 스타일 설정
