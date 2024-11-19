@@ -159,6 +159,10 @@ const LoginPage = ({ setIsLoggedIn }) => {
     }
   };
 
+  const handleSignup = () => {
+    navigate('/signup')
+  }
+
   const handleKakaoLogin = () => {
     if (!window.Kakao || !window.Kakao.Auth) {
       alert('Kakao SDK가 로드되지 않았습니다.');
@@ -178,6 +182,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/insight">Insight</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/update">Update</NavLink>
           <NavLink to="/signup">Sign Up</NavLink>
         </NavMenu>
       </Header>
@@ -204,6 +209,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
             />
             <Button type="submit">로그인</Button>
           </form>
+          <Button onClick={handleSignup}>일반 회원가입</Button>
           <KakaoButton onClick={handleKakaoLogin}>카카오 로그인 & 회원가입</KakaoButton>
         </FormWrapper>
       </LoginContainer>
