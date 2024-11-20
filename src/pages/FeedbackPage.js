@@ -130,7 +130,7 @@ const FeedbackPage = () => {
     const fetchFeedbackHistory = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:8080/api/feedback/history`, {
+        const response = await axios.get(`https://fiwell-health-care.duckdns.org/api/feedback/history`, {
           params: { userId, period: selectedPeriod },
         });
 
@@ -158,7 +158,7 @@ const FeedbackPage = () => {
     setLoading(true);
     setNewFeedback('');
     try {
-      const response = await axios.get(`http://localhost:8080/api/feedback`, {
+      const response = await axios.get(`https://fiwell-health-care.duckdns.org/api/feedback`, {
         params: { userId },
       });
 

@@ -147,8 +147,8 @@ const DashboardPage = ({ isLoggedIn, onLogout }) => {
   useEffect(() => {
     const fetchReportData = async () => {
       try {
-        const weeklyResponse = await axios.get(`http://localhost:8080/api/reports/weekly?userId=${userId}`);
-        const monthlyResponse = await axios.get(`http://localhost:8080/api/reports/monthly?userId=${userId}`);
+        const weeklyResponse = await axios.get(`https://fiwell-health-care.duckdns.org/api/reports/weekly?userId=${userId}`);
+        const monthlyResponse = await axios.get(`https://fiwell-health-care.duckdns.org/api/reports/monthly?userId=${userId}`);
         setWeeklyData(weeklyResponse.data);
         setMonthlyData(monthlyResponse.data);
       } catch (error) {
@@ -162,7 +162,7 @@ const DashboardPage = ({ isLoggedIn, onLogout }) => {
     const fetchData = async () => {
       const formattedDate = selectedDate.toISOString().split('T')[0];
       try {
-        const response = await axios.get(`http://localhost:8080/api/diet-exercise?date=${formattedDate}&userId=${userId}`);
+        const response = await axios.get(`https://fiwell-health-care.duckdns.org/api/diet-exercise?date=${formattedDate}&userId=${userId}`);
         setDietExerciseData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);

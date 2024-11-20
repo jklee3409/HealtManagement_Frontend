@@ -131,7 +131,7 @@ const UpdateMetricsPage = ({ isLoggedIn, onLogout }) => {
   const handleUpdateMetrics = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/users/${userId}/updateMetrics`, {
+      await axios.put(`https://fiwell-health-care.duckdns.org/api/users/${userId}/updateMetrics`, {
         weight: parseFloat(weight),
         skeletalMuscleMass: parseFloat(skeletalMuscleMass),
       });
@@ -153,8 +153,8 @@ const UpdateMetricsPage = ({ isLoggedIn, onLogout }) => {
   const saveDietAndExercise = async () => {
     try {
       console.log(userId);
-      await axios.post(`http://localhost:8080/api/diet?userId=${userId}`, { ...diet });
-      await axios.post(`http://localhost:8080/api/exercise?userId=${userId}`, { ...exercise });
+      await axios.post(`https://fiwell-health-care.duckdns.org/api/diet?userId=${userId}`, { ...diet });
+      await axios.post(`https://fiwell-health-care.duckdns.org/api/exercise?userId=${userId}`, { ...exercise });
       alert('식단 및 운동 정보가 저장되었습니다.');
       navigate('/update');
     } catch (error) {

@@ -140,7 +140,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/users/login', {
+      const response = await axios.post('https://fiwell-health-care.duckdns.org/api/users/login', {
         email,
         password,
       });
@@ -170,7 +170,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
     }
 
     window.Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:3000/oauth/kakao/callback', // Redirect URI 설정
+      redirectUri: 'https://fitwell-healthcare.netlify.app/oauth/kakao/callback', // Redirect URI 설정
     });
   };
 

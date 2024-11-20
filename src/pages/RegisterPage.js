@@ -222,8 +222,8 @@ const Signup = () => {
     try {
       // POST URL 결정
       const postUrl = formData.isKakaoUser
-        ? 'http://localhost:8080/api/users/register/kakao'
-        : 'http://localhost:8080/api/users/register';
+        ? 'https://fiwell-health-care.duckdns.org/api/users/register/kakao'
+        : 'https://fiwell-health-care.duckdns.org/api/users/register';
   
       const response = await fetch(postUrl, {
         method: 'POST',
