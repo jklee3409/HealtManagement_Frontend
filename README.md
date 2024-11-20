@@ -4,6 +4,8 @@
 FitWell의 프론트엔드 애플리케이션은 React를 기반으로 한 개인화된 건강 관리 웹 서비스입니다.  
 로그인, 회원가입, 식단 및 운동 기록, 피드백 분석 등 다양한 UI 기능을 제공합니다.
 
+https://fitwell-healthcare.netlify.app/
+
 ---
 
 ## 기술 스택 🔧
