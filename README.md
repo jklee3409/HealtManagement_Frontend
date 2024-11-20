@@ -30,9 +30,12 @@ FitWell의 프론트엔드 애플리케이션은 React를 기반으로 한 개�
 ### 3. **대시보드**
 - **식단 및 운동 기록** 입력: 간단한 UI로 데이터 기록 가능.  
 - **주간 및 월간 리포트** 시각화: 차트로 건강 상태 확인.
+![report](https://github.com/user-attachments/assets/e7f5f041-4263-4a61-a674-ea5ef7f6cc5f)
+![input](https://github.com/user-attachments/assets/0ce12311-38db-48b5-997d-1f0c0f58c61d)
 
 ### 4. **피드백 분석**
 - ChatGPT API를 통한 개인화된 피드백 제공.
+  ![feedback](https://github.com/user-attachments/assets/8458de3b-29d1-4da5-bf9a-91f8a4a91269)
 
 ---
 
