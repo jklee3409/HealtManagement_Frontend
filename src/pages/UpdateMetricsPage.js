@@ -163,23 +163,6 @@ const UpdateMetricsPage = ({ isLoggedIn, onLogout }) => {
     }
   };
 
-  const handleFeedback = async () => {
-    setLoading(true);
-    setFeedback('');
-    try {
-      const response = await axios.get(`https://fiwell-health-care.duckdns.org/api/feedback`, { params: { userId } });
-      const feedbackText = response.data.choices
-        .map((choice) => choice.text || choice.message?.content)
-        .join('\n');
-      setFeedback(feedbackText || '피드백이 없습니다.');
-    } catch (error) {
-      console.error('Error fetching feedback:', error);
-      setFeedback('피드백 요청 중 오류가 발생했습니다. 다시 시도해주세요.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <Background>
       <Header>
