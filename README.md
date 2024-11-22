@@ -6,6 +6,9 @@ FitWell의 프론트엔드 애플리케이션은 React를 기반으로 한 개�
 
 https://fitwell-healthcare.netlify.app/
 
+![fitwell](https://github.com/user-attachments/assets/98ad521e-cd3c-4996-93b1-04fd47bd55d8)
+
+
 ---
 
 ## 기술 스택 🔧
