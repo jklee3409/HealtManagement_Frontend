@@ -42,6 +42,7 @@ const OAuthCallback = ({ setIsLoggedIn }) => {
       }
 
       try {
+        console.log('OAuthCallback 진입');
         const response = await fetch('https://fiwell-health-care.duckdns.org/oauth/kakao/login', {
           method: 'POST',
           headers: {
