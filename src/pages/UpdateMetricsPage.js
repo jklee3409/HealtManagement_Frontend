@@ -131,7 +131,7 @@ const UpdateMetricsPage = ({ isLoggedIn, onLogout }) => {
   const handleUpdateMetrics = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://fiwell-health-care.duckdns.org/api/users/${userId}/updateMetrics`, {
+      await axios.put(`https://fiwell-health-care.duckdns.org/api/users/${userId}/updatesMetrics`, {
         weight: parseFloat(weight),
         skeletalMuscleMass: parseFloat(skeletalMuscleMass),
       });
