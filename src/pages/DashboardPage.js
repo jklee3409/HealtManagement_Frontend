@@ -147,8 +147,8 @@ const DashboardPage = ({ isLoggedIn, onLogout }) => {
   useEffect(() => {
     const fetchReportData = async () => {
       try {
-        const weeklyResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/reports/weekly?userId=${userId}`);
-        const monthlyResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/reports/monthly?userId=${userId}`);
+        const weeklyResponse = await axios.get(`https://fiwell-health-care.duckdns.org/api/reports/weekly?userId=${userId}`);
+        const monthlyResponse = await axios.get(`https://fiwell-health-care.duckdns.org/api/reports/monthly?userId=${userId}`);
         setWeeklyData(weeklyResponse.data);
         setMonthlyData(monthlyResponse.data);
       } catch (error) {
