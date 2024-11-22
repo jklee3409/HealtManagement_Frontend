@@ -131,7 +131,7 @@ const UpdateMetricsPage = ({ isLoggedIn, onLogout }) => {
   const handleUpdateMetrics = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/users/${userId}/updateMetrics`, {
+      await axios.put(`https://fiwell-health-care.duckdns.org/api/users/${userId}/updateMetrics`, {
         weight: parseFloat(weight),
         skeletalMuscleMass: parseFloat(skeletalMuscleMass),
       });
@@ -167,7 +167,7 @@ const UpdateMetricsPage = ({ isLoggedIn, onLogout }) => {
     setLoading(true);
     setFeedback('');
     try {
-      const response = await axios.get(`http://localhost:8080/api/feedback`, { params: { userId } });
+      const response = await axios.get(`https://fiwell-health-care.duckdns.org/api/feedback`, { params: { userId } });
       const feedbackText = response.data.choices
         .map((choice) => choice.text || choice.message?.content)
         .join('\n');
